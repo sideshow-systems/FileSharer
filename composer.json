@@ -1,5 +1,5 @@
 {
 	"require": {
-		"zendframework/zend-stdlib": "2.1.*"
+		"zendframework/zendframework": "2.1.*"
 	}
 }
