@@ -3,3 +3,4 @@
 /vendor/*
 composer.lock
 /misc/js/vendor/*
+/data/*
