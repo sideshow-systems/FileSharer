@@ -51,7 +51,7 @@ foreach ($jsLibs as $libData) {
 		<div id="main_container">
 			<div id="upload_wrapper">
 				<h1>FileSharer</h1>
-				<form id="dropzone-form" action="/file-upload" class="dropzone">
+				<form id="dropzone-form" action="<?php echo $_SERVER['PHP_SELF']; // TODO: add correct path to upload script...      ?>" class="dropzone">
 					<div class="fallback">
 						<input name="file" type="file" multiple />
 					</div>
