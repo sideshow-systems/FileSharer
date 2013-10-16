@@ -13,12 +13,7 @@ Dropzone.options.dropzoneForm = {
 		// TODO: event listener to show generated file url
 		this.on('complete', function(file) {
 			console.log(file);
-			alert("File transfer is complete. Your url is http://tiny.bla.com/?123adsfasdf");
-		});
-
-		// TODO: show progress here...
-		this.on('uploadprogress', function(file, progress, bytesSent) {
-			console.log(arguments);
+			//alert("File transfer is complete. Your url is http://tiny.bla.com/?123adsfasdf");
 		});
 	},
 	accept: function(file, done) {
