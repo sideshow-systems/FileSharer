@@ -37,6 +37,7 @@ foreach ($jsLibs as $libData) {
 		<link rel="shortcut icon" href="../misc/pics/favicon.ico" />
 		<link rel="apple-touch-icon" href="../misc/pics/icon.png" />
 
+		<link rel="stylesheet" href="../misc/css/dropzone.css">
 		<link rel="stylesheet/less" type="text/css" href="../misc/less/master.less" />
 		<script src="../misc/js/vendor/less-1.4.1.min.js"></script>
 		<script src="../misc/js/vendor/jquery-1.10.2.min.js"></script>
@@ -51,7 +52,7 @@ foreach ($jsLibs as $libData) {
 		<div id="main_container">
 			<div id="upload_wrapper">
 				<h1>FileSharer</h1>
-				<form id="dropzone-form" action="<?php echo $_SERVER['PHP_SELF']; // TODO: add correct path to upload script...      ?>" class="dropzone">
+				<form id="dropzone-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="dropzone">
 					<div class="fallback">
 						<input name="file" type="file" multiple />
 					</div>
