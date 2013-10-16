@@ -36,3 +36,28 @@ body {
 	.box-shadow(0, 0, 5px, 3px, rgba(0,0,0,0.5));
 	padding: 20px;
 }
+
+
+/** dropzone styles **/
+#dropzone-form {
+	.dz-default {
+		margin-top: 40px;
+		border: 5px dashed #888;
+		.border-radius(10px);
+		padding: 30px;
+		text-align: center;
+	}
+
+	&.dz-drag-hover {
+		.dz-default {
+			background: rgba(0,200,0,0.3);
+		}
+	}
+
+	// TODO: give visual feedback if more than one file is selected
+	&.dz-max-files-reached {
+		.dz-default {
+			background: rgba(200,0,0,0.3);
+		}
+	}
+}

@@ -10,6 +10,10 @@ $jsLibs = array(
 	array(
 		'lib' => 'less-1.4.1.min.js',
 		'downloadUrl' => 'https://raw.github.com/less/less.js/master/dist/less-1.4.1.min.js'
+	),
+	array(
+		'lib' => 'dropzone.js',
+		'downloadUrl' => 'https://raw.github.com/enyo/dropzone/master/downloads/dropzone.js'
 	)
 );
 foreach ($jsLibs as $libData) {
@@ -36,6 +40,8 @@ foreach ($jsLibs as $libData) {
 		<link rel="stylesheet/less" type="text/css" href="../misc/less/master.less" />
 		<script src="../misc/js/vendor/less-1.4.1.min.js"></script>
 		<script src="../misc/js/vendor/jquery-1.10.2.min.js"></script>
+		<script src="../misc/js/vendor/dropzone.js"></script>
+		<script src="../misc/js/master.js"></script>
 	</head>
 	<body>
 		<!--[if lt IE 7]>
@@ -45,8 +51,10 @@ foreach ($jsLibs as $libData) {
 		<div id="main_container">
 			<div id="upload_wrapper">
 				<h1>FileSharer</h1>
-				<form>
-					content...<br />content...<br />content...<br />content...<br />content...<br />content...<br />
+				<form id="dropzone-form" action="/file-upload" class="dropzone">
+					<div class="fallback">
+						<input name="file" type="file" multiple />
+					</div>
 				</form>
 			</div>
 		</div>
