@@ -8,7 +8,7 @@ $(document).ready(function() {
 Dropzone.options.dropzoneForm = {
 	paramName: "file",
 	maxFiles: 1,
-	maxFilesize: 2, // MB
+	maxFilesize: 200, // MB
 	accept: function(file, done) {
 		if (file.name === "justinbieber.jpg") {
 			done("Naha, you don't.");
