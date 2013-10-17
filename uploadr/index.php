@@ -64,6 +64,13 @@ $resourceLoader->loadAllResources();
 					</div>
 				</form>
 			</div>
+
+			<div id="url_viewbox" class="notify" style="display: none;">
+				<h3 class="url_val"></h3>
+				<div class="info">
+					Please copy the URL to your clipboard and use it (or mail it... ???)
+				</div>
+			</div>
 		</div>
 
 	</body>

@@ -3,7 +3,7 @@
 @import url('classes.less');
 
 /** vars **/
-
+@color_selection_text: rgba(255, 150, 0, 0.5);
 
 
 
@@ -41,4 +41,48 @@ body {
 /** dropzone styles **/
 #dropzone-form {
 	// overwrite default styles here...
+}
+
+/** notify styles **/
+.notify {
+	position: absolute;
+	top: 40%;
+	left: 30px;
+	right: 30px;
+	padding: 40px 20px;
+	text-align: center;
+	.border-radius(10px);
+	border: 7px dashed rgba(100,100,100,0.95);
+	.box-shadow(0, 0, 5px, 3px, rgba(0,0,0,0.5));
+	color: #ffffff;
+	background: rgba(50,50,50,0.95);
+
+	h3 {
+		display: block;
+		font-size: 26px;
+		line-height: 130%;
+	}
+
+	&.error {
+		background: rgba(200,20,20,0.95);
+		border-color: rgba(150,0,0,0.95);
+		color: #000000;
+	}
+	&.ok {
+		background: rgba(20,200,20,0.95);
+		border-color: rgba(0,150,0,0.95);
+		color: #000000;
+	}
+}
+
+#url_viewbox {
+
+}
+
+/** selection color **/
+::selection {
+	background: @color_selection_text; /* Safari */
+	}
+::-moz-selection {
+	background: @color_selection_text; /* Firefox */
 }
