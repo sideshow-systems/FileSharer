@@ -10,9 +10,17 @@ Dropzone.options.dropzoneForm = {
 	maxFiles: 1,
 	maxFilesize: 200, // MB
 	init: function() {
+		// success handler
 		this.on('success', function(file, responseText) {
 			var $viewBox = $('#url_viewbox');
-			$viewBox.find('.url_val').html(responseText).selectText();
+			$viewBox.find('.hl').html(responseText).selectText();
+			$viewBox.fadeIn(200);
+		});
+
+		// error handler
+		this.on('error', function(file, errorMessage) {
+			var $viewBox = $('#error_viewbox');
+			$viewBox.find('.info').html(errorMessage);
 			$viewBox.fadeIn(200);
 		});
 	},
