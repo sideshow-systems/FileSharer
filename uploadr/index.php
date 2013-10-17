@@ -1,27 +1,40 @@
 <?php
+
+namespace de\sideshowsystems\common;
+
+require '../vendor/autoload.php';
+
 $config = require_once '../config.php';
 
 // TODO: put this in own class and add unit tests!
-$jsLibs = array(
-	array(
-		'lib' => 'jquery-1.10.2.min.js',
-		'downloadUrl' => 'http://code.jquery.com/jquery-1.10.2.min.js'
-	),
-	array(
-		'lib' => 'less-1.4.1.min.js',
-		'downloadUrl' => 'https://raw.github.com/less/less.js/master/dist/less-1.4.1.min.js'
-	),
-	array(
-		'lib' => 'dropzone.js',
-		'downloadUrl' => 'https://raw.github.com/enyo/dropzone/master/downloads/dropzone.js'
+$jsLibsRessourcePackage = array(
+	'fileSystemPath' => str_replace('/uploadr', '', dirname(__FILE__)) . '/misc/js/vendor/',
+	'libs' => array(
+		array(
+			'lib' => 'jquery-1.10.2.min.js',
+			'downloadUrl' => 'http://code.jquery.com/jquery-1.10.2.min.js'
+		),
+		array(
+			'lib' => 'less-1.4.1.min.js',
+			'downloadUrl' => 'https://raw.github.com/less/less.js/master/dist/less-1.4.1.min.js'
+		),
+		array(
+			'lib' => 'dropzone.js',
+			'downloadUrl' => 'https://raw.github.com/enyo/dropzone/master/downloads/dropzone.js'
+		)
 	)
 );
-foreach ($jsLibs as $libData) {
-	$libFile = str_replace('/uploadr', '', dirname(__FILE__)) . '/misc/js/vendor/' . $libData['lib'];
-	if (!file_exists($libFile)) {
-		file_put_contents($libFile, file_get_contents($libData['downloadUrl']));
-	}
-}
+
+$dynamicValue = new DynamicValueContainer();
+$dynamicValue->setMemberJsLibs($jsLibsRessourcePackage);
+var_dump($dynamicValue->getMemberJsLibs());
+
+//foreach ($jsLibs as $libData) {
+//	$libFile = str_replace('/uploadr', '', dirname(__FILE__)) . '/misc/js/vendor/' . $libData['lib'];
+//	if (!file_exists($libFile)) {
+//		file_put_contents($libFile, file_get_contents($libData['downloadUrl']));
+//	}
+//}
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
