@@ -18,7 +18,7 @@ class ResourceLoaderTest extends PHPUnit_Framework_TestCase {
 
 	public function setUp() {
 		$jsLibsRessourcePackage = array(
-			'fileSystemPath' => dirname(__FILE__) . '/test',
+			'fileSystemPath' => dirname(__FILE__) . '/_tmp',
 			'libs' => array(
 				array(
 					'lib' => 'jquery-1.10.2.min.js',
@@ -61,6 +61,19 @@ class ResourceLoaderTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testAddResourcePackageThrowsException() {
 		$this->resourceLoader->addResourcePackage(false);
+	}
+
+	public function testLoadResources() {
+		$dv = $this->dynamicValue->getMemberJsLibs();
+		$this->resourceLoader->addResourcePackage($dv);
+		$this->resourceLoader->loadAllResources();
+
+		$fileExists = file_exists($dv['fileSystemPath'] . '/' . $dv['libs'][0]['lib']);
+		$this->assertTrue($fileExists);
+
+		if (file_exists($dv['fileSystemPath'])) {
+			exec('rm -rf ' . $dv['fileSystemPath']);
+		}
 	}
 
 }

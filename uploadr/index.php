@@ -6,7 +6,7 @@ require '../vendor/autoload.php';
 
 $config = require_once '../config.php';
 
-// TODO: put this in own class and add unit tests!
+// TODO: put this to config
 $jsLibsRessourcePackage = array(
 	'fileSystemPath' => str_replace('/uploadr', '', dirname(__FILE__)) . '/misc/js/vendor/',
 	'libs' => array(
@@ -25,16 +25,9 @@ $jsLibsRessourcePackage = array(
 	)
 );
 
-$dynamicValue = new DynamicValueContainer();
-$dynamicValue->setMemberJsLibs($jsLibsRessourcePackage);
-var_dump($dynamicValue->getMemberJsLibs());
-
-//foreach ($jsLibs as $libData) {
-//	$libFile = str_replace('/uploadr', '', dirname(__FILE__)) . '/misc/js/vendor/' . $libData['lib'];
-//	if (!file_exists($libFile)) {
-//		file_put_contents($libFile, file_get_contents($libData['downloadUrl']));
-//	}
-//}
+$resourceLoader = new ResourceLoader();
+$resourceLoader->addResourcePackage($jsLibsRessourcePackage);
+$resourceLoader->loadAllResources();
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
