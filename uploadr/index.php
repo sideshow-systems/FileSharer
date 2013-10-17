@@ -58,25 +58,26 @@ $resourceLoader->loadAllResources();
 		<div id="main_container">
 			<div id="upload_wrapper">
 				<h1>FileSharer</h1>
+
+				<div id="url_viewbox" class="notify" style="display: none;">
+					<h3 class="hl"></h3>
+					<div class="info">
+						Please copy the URL to your clipboard and use it (or mail it... ???)
+					</div>
+				</div>
+
+				<div id="error_viewbox" class="notify error" style="display: none;">
+					<h3 class="hl">Error!</h3>
+					<div class="info">
+						Please copy the URL to your clipboard and use it (or mail it... ???)
+					</div>
+				</div>
+
 				<form id="dropzone-form" action="<?php echo str_replace('uploadr/index.php', 'ul.php', $_SERVER['PHP_SELF']); ?>" class="dropzone">
 					<div class="fallback">
 						<input name="file" type="file" multiple />
 					</div>
 				</form>
-			</div>
-
-			<div id="url_viewbox" class="notify" style="display: none;">
-				<h3 class="hl"></h3>
-				<div class="info">
-					Please copy the URL to your clipboard and use it (or mail it... ???)
-				</div>
-			</div>
-
-			<div id="error_viewbox" class="notify error" style="display: none;">
-				<h3 class="hl">Error!</h3>
-				<div class="info">
-					Please copy the URL to your clipboard and use it (or mail it... ???)
-				</div>
 			</div>
 		</div>
 

@@ -9,6 +9,7 @@ Dropzone.options.dropzoneForm = {
 	paramName: "file",
 	maxFiles: 1,
 	maxFilesize: 200, // MB
+	addRemoveLinks: true,
 	init: function() {
 		// success handler
 		this.on('success', function(file, responseText) {
@@ -22,6 +23,16 @@ Dropzone.options.dropzoneForm = {
 			var $viewBox = $('#error_viewbox');
 			$viewBox.find('.info').html(errorMessage);
 			$viewBox.fadeIn(200);
+		});
+
+		// remove all files except first one
+		this.on('maxfilesexceeded', function(file) {
+			this.removeFile(file);
+		});
+
+		// hide notify boxes
+		this.on('processing', function(file) {
+			$('.notify').fadeOut(200);
 		});
 	},
 	accept: function(file, done) {
