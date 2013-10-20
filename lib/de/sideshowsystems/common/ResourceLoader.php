@@ -17,7 +17,7 @@ class ResourceLoader {
 	}
 
 	/**
-	 * Add a resource package array
+	 * Add a resource package array.
 	 *
 	 * @param array $package
 	 * @return void
@@ -27,7 +27,7 @@ class ResourceLoader {
 	}
 
 	/**
-	 * Add a resource package array by key
+	 * Add a resource package array by key.
 	 *
 	 * @param string $key
 	 * @param array $package
@@ -50,7 +50,7 @@ class ResourceLoader {
 	}
 
 	/**
-	 * Get all packages
+	 * Get all packages.
 	 *
 	 * @return array
 	 */
@@ -59,7 +59,7 @@ class ResourceLoader {
 	}
 
 	/**
-	 * Get package by key
+	 * Get package by key.
 	 *
 	 * @param string $key
 	 * @return array

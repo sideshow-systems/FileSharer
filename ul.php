@@ -1,19 +1,26 @@
 <?php
 
+$config = require_once('config.php');
+
 $ds = DIRECTORY_SEPARATOR;  //1
 
 $storeFolder = 'data';   //2
 
 if (!empty($_FILES)) {
+	$keys = array();
+	
+	$helper = new de\sideshowsystems\filesharer\FileSharerHelper($config);
+	
+	foreach($_FILES as $file) {
+		$tempFile = $file['tmp_name']; //3
+		$realName = $file['name'];
+		$mimeType = $file['type'];
 
-	$tempFile = $_FILES['file']['tmp_name']; //3
+		$key = $helper->consumeUpload($tempFile, $realName, $mimeType);
+		
+		$keys[$realName] = $key;
+		echo(dirname($_SERVER['PHP_SELF']) . '/?' . $key . "\n");
+	}
 
-	$targetPath = dirname(__FILE__) . $ds . $storeFolder . $ds;  //4
-
-	$targetFile = $targetPath . $_FILES['file']['name'];  //5
-
-	move_uploaded_file($tempFile, $targetFile); //6
-
-	echo "http://fs.example.com/?1j1239198jkjkjlsid212";
+	//print_r($keys);//"http://fs.example.com/?1j1239198jkjkjlsid212";
 }
-?>

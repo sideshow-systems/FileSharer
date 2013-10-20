@@ -1,29 +1,11 @@
 <?php
 
-namespace de\sideshowsystems\common;
+use de\sideshowsystems\common\ResourceLoader;
 
-require '../vendor/autoload.php';
-
-$config = require_once '../config.php';
+$config = include_once('../config.php');
 
 // TODO: put this to config
-$jsLibsRessourcePackage = array(
-	'fileSystemPath' => str_replace('/uploadr', '', dirname(__FILE__)) . '/misc/js/vendor/',
-	'libs' => array(
-		array(
-			'lib' => 'jquery-1.10.2.min.js',
-			'downloadUrl' => 'http://code.jquery.com/jquery-1.10.2.min.js'
-		),
-		array(
-			'lib' => 'less-1.4.1.min.js',
-			'downloadUrl' => 'https://raw.github.com/less/less.js/master/dist/less-1.4.1.min.js'
-		),
-		array(
-			'lib' => 'dropzone.js',
-			'downloadUrl' => 'https://raw.github.com/enyo/dropzone/master/downloads/dropzone.js'
-		)
-	)
-);
+$jsLibsRessourcePackage = $config->getJsLibResources();
 
 $resourceLoader = new ResourceLoader();
 $resourceLoader->addResourcePackage($jsLibsRessourcePackage);
@@ -37,7 +19,7 @@ $resourceLoader->loadAllResources();
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>FileSharer v<?php echo $config['version']; ?></title>
+		<title>FileSharer v<?php echo $config->getVersion(); ?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<link rel="shortcut icon" href="../misc/pics/favicon.ico" />
