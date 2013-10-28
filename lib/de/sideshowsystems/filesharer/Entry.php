@@ -97,10 +97,11 @@ class Entry {
 	 */
 	public static function loadFromKey($dataDir, $key) {
 		$result = null;
-		$contentFile = $dataDir . '/' . $key;
+		$entryDir = $dataDir . '/' . $key;
+		$descriptorFile = $entryDir . '/meta.json';
 		
-		if (file_exists($contentFile) && is_readable($contentFile)) {
-			$content = file_get_contents($contentFile);
+		if (file_exists($descriptorFile) && is_readable($descriptorFile)) {
+			$content = file_get_contents($descriptorFile);
 			if (! empty($content)) {
 				$data = json_decode($content, true);
 				if (empty($data[self::JSON_VERSION])) {
@@ -108,7 +109,8 @@ class Entry {
 				}
 				switch ($data[self::JSON_VERSION]) {
 					case self::CURRENT_VERSION:
-						$result = new Entry($key, $data[self::JSON_REALNAME], $data[self::JSON_UPLOADTIME], $data[self::JSON_CONSUMERINFO]);
+					case '0.1':
+						$result = new Entry($key, $data[self::JSON_REALNAME], $data[self::JSON_FILESIZE], $data[self::JSON_MIMETYPE], $data[self::JSON_UPLOADTIME]);
 						break;
 					default:
 						throw new Exception("Unknown data format version " . $data[self::JSON_VERSION] . "!");
@@ -176,6 +178,15 @@ class Entry {
 		$this->mimeType = $mimeType;
 		$this->uploadTime = $uploadTime;
 		$this->consumerInfo = $consumerInfo;
+	}
+	
+	public function sendBytes($dataDir) {
+		$mimeType = $this->getMimeType();
+		if (! empty($mimeType)) {
+			header("Content-type: " . $mimeType);
+		}
+		header('Content-Disposition: inline; filename="' . $this->getRealName() . '"; size="' . $this->getFileSize() . '"');
+		readfile($dataDir . '/' . $this->key . '/content.bin');
 	}
 
 	public function getKey() {

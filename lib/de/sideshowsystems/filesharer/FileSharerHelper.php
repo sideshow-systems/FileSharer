@@ -22,6 +22,13 @@ class FileSharerHelper {
 		return $result;
 	}
 
+	public function deliverContent($key) {
+		$entry = Entry::loadFromKey($this->config->getDataDir(), $key);
+		if (! empty($entry)) {
+			$entry->sendBytes($this->config->getDataDir());
+		}
+	}
+
 	protected function ensureWritable() {
 		if (! is_dir($this->config->getDataDir()) || ! is_writable($this->config->getDataDir())) {
 			throw new IOException("Error: data directory " . $this->config->getDataDir() . " is not writable!");
