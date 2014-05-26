@@ -38,13 +38,12 @@ Perform the installation steps in this order:
 
   5. Now ensure that the project root directory is accessible from your webserver.
 
-  6. The following directories must be writable from the webserver:
+  6. The following directories must be writable from the webserver, otherwise FileSharer will not function properly:
 
 	* data
 	* misc/css
 	* misc/js/vendor
 
-  7. If you use Apache HTTP Daemon as webserver, the data directory already contains a .htaccess file to prevent direct access to data files (given that you allow .htaccess rules)
 
 
 Usage
