@@ -1,0 +1,1 @@
+*/10 * * * * /home/vagrant/cronjobs/logrotate.sh

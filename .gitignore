@@ -2,7 +2,10 @@
 .DS_Store
 .project
 .settings
+.vagrant/*
 /nbproject
 /vendor/*
 /misc/js/vendor/*
 /data/*
+/logs/*
+/_development/vagrant/provision/includes/aptproxy.sh

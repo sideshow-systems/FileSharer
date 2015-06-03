@@ -1,0 +1,2 @@
+# configure apt proxy
+echo 'Acquire::http::Proxy "http://YOURAPTCACHESERVER:PORT";' > /etc/apt/apt.conf.d/01proxy

@@ -23,14 +23,6 @@ class ResourceLoaderTest extends PHPUnit_Framework_TestCase {
 				array(
 					'lib' => 'jquery-1.10.2.min.js',
 					'downloadUrl' => 'http://code.jquery.com/jquery-1.10.2.min.js'
-				),
-				array(
-					'lib' => 'less-1.4.1.min.js',
-					'downloadUrl' => 'https://raw.github.com/less/less.js/master/dist/less-1.4.1.min.js'
-				),
-				array(
-					'lib' => 'dropzone.js',
-					'downloadUrl' => 'https://raw.github.com/enyo/dropzone/master/downloads/dropzone.js'
 				)
 			)
 		);
