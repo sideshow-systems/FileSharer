@@ -42,6 +42,9 @@ apt-get -y purge vim-tiny
 apt-get install -y vim git-core 
 apt-get -y purge nano
 
+apt-get install aptitude
+apt-get install zip unzip
+
 # vim config
 cat <<EOF > /home/vagrant/.vimrc
 set nocompatible

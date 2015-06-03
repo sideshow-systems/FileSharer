@@ -34,4 +34,28 @@ class FileSharerHelper {
 			throw new IOException("Error: data directory " . $this->config->getDataDir() . " is not writable!");
 		}
 	}
+	
+	public function generateArchiveForMultipleFiles($uploadData) {
+		
+		$filename = 'archive.zip';
+		$tmpDirName = 'tozip_' . mt_rand(1000, 100000);
+		$tmpArchivePath = '/tmp/' . $tmpDirName;
+		
+		mkdir($tmpArchivePath, 0777);
+		
+		exec("zip -r /tmp/mep " . $tmpArchivePath);
+		
+		
+		// Build file list
+		
+		$elementsNum = count($uploadData['name']);
+		error_log("elements: " . $elementsNum);
+		
+		
+		
+		foreach ($array as $file) {
+			error_log(print_r($file, true));
+			error_log("-----------------");
+		}
+	}
 }

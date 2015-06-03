@@ -7,9 +7,10 @@ $(document).ready(function() {
 // configure dropzone -> http://www.dropzonejs.com
 Dropzone.options.dropzoneForm = {
 	paramName: "file",
-	maxFiles: 1,
+	maxFiles: 25,
 	maxFilesize: 200, // MB
 	addRemoveLinks: true,
+	uploadMultiple: true,
 	init: function() {
 		// success handler
 		this.on('success', function(file, responseText) {
@@ -33,6 +34,10 @@ Dropzone.options.dropzoneForm = {
 		// hide notify boxes
 		this.on('processing', function(file) {
 			$('.notify').fadeOut(200);
+		});
+		
+		this.on('processingmultiple', function() {
+			console.log(arguments);
 		});
 	},
 	accept: function(file, done) {
