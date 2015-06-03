@@ -14,11 +14,10 @@ then
 fi
 
 # load custom files
-#incbasepath="/vagrant/_development/vagrant/provision/includes"
-#if [ -f "${incbasepath}/aptproxy.sh" ]; then
-#	source "${incbasepath}/aptproxy.sh"
-#fi
-echo 'Acquire::http::Proxy "http://creanas:9999";' > /etc/apt/apt.conf.d/01proxy
+incbasepath="/vagrant/_development/vagrant/provision/includes"
+if [ -f "${incbasepath}/aptproxy.sh" ]; then
+	source "${incbasepath}/aptproxy.sh"
+fi
 
 
 # perform base installation
