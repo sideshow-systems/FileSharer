@@ -4,13 +4,17 @@ $(document).ready(function() {
 
 });
 
+var maxFiles = 25;
+var maxFilesizeInMb = 200;
+
 // configure dropzone -> http://www.dropzonejs.com
 Dropzone.options.dropzoneForm = {
 	paramName: "file",
-	maxFiles: 25,
-	maxFilesize: 200, // MB
-	addRemoveLinks: true,
+	maxFiles: maxFiles,
+	maxFilesize: maxFilesizeInMb, // MB
+	addRemoveLinks: false,
 	uploadMultiple: true,
+	parallelUploads: maxFiles,
 	init: function() {
 		// success handler
 		this.on('success', function(file, responseText) {
@@ -37,15 +41,11 @@ Dropzone.options.dropzoneForm = {
 		});
 		
 		this.on('processingmultiple', function() {
-			console.log(arguments);
+			//console.log(arguments);
 		});
 	},
 	accept: function(file, done) {
-		if (file.name === "justinbieber.jpg") {
-			done("Naha, you don't.");
-		} else {
-			done();
-		}
+		done();
 	}
 };
 

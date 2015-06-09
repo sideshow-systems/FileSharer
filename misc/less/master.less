@@ -35,6 +35,33 @@ body {
 	.border-radius(10px);
 	.box-shadow(0, 0, 5px, 3px, rgba(0,0,0,0.5));
 	padding: 20px;
+	
+	.header {
+		position: relative;
+		
+		.reload_link {
+			display: block;
+			position: absolute;
+			right: 0;
+			top: 0;
+			
+			text-decoration: none;
+			font-size: 18px;
+			color: #333;
+			
+			img {
+				vertical-align: middle;
+				
+				transition: all 0.5s ease-in-out 0s;
+			}
+			
+			&:hover {
+				img {
+					transform: rotate(-240deg);
+				}
+			}
+		}
+	}
 }
 
 

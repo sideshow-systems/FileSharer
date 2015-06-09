@@ -10,13 +10,13 @@ class FileSharerHelper {
 		$this->config = $config;
 	}
 
-	public function consumeUpload($fileName, $realName, $mimeType = null) {
+	public function consumeUpload($fileName, $realName, $mimeType = null, $uploadTime = null, $isUpload = true) {
 		$result = null;
 		
 		$this->ensureWritable();
 		
 		if (is_file($fileName)) {
-			$result = Entry::generateAndStore($this->config->getDataDir(), $fileName, $realName, $mimeType);
+			$result = Entry::generateAndStore($this->config->getDataDir(), $fileName, $realName, $mimeType, $uploadTime, $isUpload);
 		}
 		
 		return $result;
@@ -36,26 +36,44 @@ class FileSharerHelper {
 	}
 	
 	public function generateArchiveForMultipleFiles($uploadData) {
+		$tmpNum = time() . '_' . mt_rand(10, 1000);
+		$tmpBaseDir = $this->config->getDataDir();
 		
-		$filename = 'archive.zip';
-		$tmpDirName = 'tozip_' . mt_rand(1000, 100000);
-		$tmpArchivePath = '/tmp/' . $tmpDirName;
+		// Generate tmp dir
+		$tmpDir = $tmpBaseDir . "/fs_tmparchive_" . $tmpNum;
+		mkdir($tmpDir, 0777);
 		
-		mkdir($tmpArchivePath, 0777);
 		
-		exec("zip -r /tmp/mep " . $tmpArchivePath);
+		$zipFileName = 'archive.zip';
+		$zipFilePath = $tmpDir . '/' . $zipFileName;
+		$dirToZipName = 'archive';
+		$dirToZipPath = $tmpDir . '/' . $dirToZipName;
 		
+		mkdir($dirToZipPath, 0777);
 		
 		// Build file list
-		
-		$elementsNum = count($uploadData['name']);
-		error_log("elements: " . $elementsNum);
-		
-		
-		
-		foreach ($array as $file) {
-			error_log(print_r($file, true));
-			error_log("-----------------");
+//		$elementsNum = count($uploadData['name']);
+		$keys = array();
+		$values = array();
+		foreach ($uploadData as $key => $file) {
+			$keys[] = $key;
+			$values[] = $file;
 		}
+		$combArray = array_combine($keys, $values);
+//		error_log(print_r($combArray, true));
+		if (!empty($combArray) && !empty($combArray['name'])) {
+			$files = $combArray['name'];
+			$i = 0;
+			foreach ($files as $item) {
+				if ($combArray['error'][$i] == UPLOAD_ERR_OK) {
+					move_uploaded_file($combArray['tmp_name'][$i], $dirToZipPath . '/' . $item);
+				}
+				$i++;
+			}
+		}
+		
+		// Pack files
+		exec("zip -rj --no-dir-entries " . $zipFilePath . " " . $dirToZipPath);
+		return $zipFilePath;
 	}
 }

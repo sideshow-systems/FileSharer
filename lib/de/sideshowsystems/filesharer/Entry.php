@@ -132,9 +132,10 @@ class Entry {
 	 * @param String $realName        	
 	 * @param String $mimeType        	
 	 * @param timestamp $uploadTime        	
+	 * @param bool $isUpload
 	 * @throws IOException
 	 */
-	public static function generateAndStore($dataDir, $fileName, $realName, $mimeType = null, $uploadTime = null) {
+	public static function generateAndStore($dataDir, $fileName, $realName, $mimeType = null, $uploadTime = null, $isUpload = true) {
 		if (is_file($fileName)) {
 			if (empty($uploadTime)) {
 				// assume now as upload time
@@ -153,7 +154,11 @@ class Entry {
 			
 			// move content file
 			$destination = $entryDir . '/content.bin';
-			$success = move_uploaded_file($fileName, $destination);
+			if ($isUpload) {
+				$success = move_uploaded_file($fileName, $destination);
+			} else {
+				$success = rename($fileName, $destination);
+			}
 			if ($success !== true) {
 				throw new IOException("Error: uploaded file " . $fileName . " could not be moved to " . $destination . "!");
 			}
