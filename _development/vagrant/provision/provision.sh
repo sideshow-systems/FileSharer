@@ -30,6 +30,8 @@ echo "" > /etc/apt/sources.list
 # use debian mirror selector
 echo "deb http://http.debian.net/debian wheezy main" >> /etc/apt/sources.list
 echo "deb-src http://http.debian.net/debian wheezy main" >> /etc/apt/sources.list
+#echo "deb http://httpredir.debian.org/debian wheezy main" >> /etc/apt/sources.list
+#echo "deb-src http://httpredir.debian.org/debian wheezy main" >> /etc/apt/sources.list
 
 echo "deb http://security.debian.org wheezy/updates main" >> /etc/apt/sources.list
 

@@ -73,6 +73,7 @@ class FileSharerHelper {
 		}
 		
 		// Pack files
+//		error_log("zip -rj --no-dir-entries " . $zipFilePath . " " . $dirToZipPath);
 		exec("zip -rj --no-dir-entries " . $zipFilePath . " " . $dirToZipPath);
 		return $zipFilePath;
 	}
