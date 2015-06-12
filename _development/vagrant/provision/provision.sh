@@ -28,10 +28,10 @@ echo "" > /etc/apt/sources.list
 #echo "deb-src http://ftp.de.debian.org/debian/ wheezy main" >> /etc/apt/sources.list
 
 # use debian mirror selector
-echo "deb http://http.debian.net/debian wheezy main" >> /etc/apt/sources.list
-echo "deb-src http://http.debian.net/debian wheezy main" >> /etc/apt/sources.list
-#echo "deb http://httpredir.debian.org/debian wheezy main" >> /etc/apt/sources.list
-#echo "deb-src http://httpredir.debian.org/debian wheezy main" >> /etc/apt/sources.list
+#echo "deb http://http.debian.net/debian wheezy main" >> /etc/apt/sources.list
+#echo "deb-src http://http.debian.net/debian wheezy main" >> /etc/apt/sources.list
+echo "deb http://httpredir.debian.org/debian wheezy main" >> /etc/apt/sources.list
+echo "deb-src http://httpredir.debian.org/debian wheezy main" >> /etc/apt/sources.list
 
 echo "deb http://security.debian.org wheezy/updates main" >> /etc/apt/sources.list
 
@@ -44,8 +44,8 @@ apt-get -y purge vim-tiny
 apt-get install -y vim git-core 
 apt-get -y purge nano
 
-apt-get install aptitude
-apt-get install zip unzip
+apt-get -y install aptitude
+apt-get -y install zip unzip
 
 # vim config
 cat <<EOF > /home/vagrant/.vimrc
