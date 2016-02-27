@@ -39,19 +39,24 @@ $resourceLoader->loadAllResources();
 
 		<div id="main_container">
 			<div id="upload_wrapper">
-				<h1>FileSharer</h1>
-
+				<div class="header">
+					<h1>FileSharer</h1>
+					<a href="/uploadr" class="reload_link">
+						<img src="/misc/pics/reload.png" height="22" alt="reload" /> &#160;New Upload
+					</a>
+				</div>
+				
 				<div id="url_viewbox" class="notify" style="display: none;">
 					<h3 class="hl"></h3>
 					<div class="info">
-						Please copy the URL to your clipboard and use it (or mail it... ???)
+						Please copy the URL to your clipboard.
 					</div>
 				</div>
 
 				<div id="error_viewbox" class="notify error" style="display: none;">
 					<h3 class="hl">Error!</h3>
 					<div class="info">
-						Please copy the URL to your clipboard and use it (or mail it... ???)
+						Please copy the URL to your clipboard.
 					</div>
 				</div>
 

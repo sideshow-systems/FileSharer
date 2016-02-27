@@ -28,8 +28,10 @@ echo "" > /etc/apt/sources.list
 #echo "deb-src http://ftp.de.debian.org/debian/ wheezy main" >> /etc/apt/sources.list
 
 # use debian mirror selector
-echo "deb http://http.debian.net/debian wheezy main" >> /etc/apt/sources.list
-echo "deb-src http://http.debian.net/debian wheezy main" >> /etc/apt/sources.list
+#echo "deb http://http.debian.net/debian wheezy main" >> /etc/apt/sources.list
+#echo "deb-src http://http.debian.net/debian wheezy main" >> /etc/apt/sources.list
+echo "deb http://httpredir.debian.org/debian wheezy main" >> /etc/apt/sources.list
+echo "deb-src http://httpredir.debian.org/debian wheezy main" >> /etc/apt/sources.list
 
 echo "deb http://security.debian.org wheezy/updates main" >> /etc/apt/sources.list
 
@@ -41,6 +43,9 @@ apt-get install -y pv
 apt-get -y purge vim-tiny
 apt-get install -y vim git-core 
 apt-get -y purge nano
+
+apt-get -y install aptitude
+apt-get -y install zip unzip
 
 # vim config
 cat <<EOF > /home/vagrant/.vimrc
@@ -101,6 +106,14 @@ a2enmod rewrite
 # bugfix for VirtualBox folder sync, otherwise use nfs foldersharing in vagrantfile
 # http://docs.vagrantup.com/v2/synced-folders/virtualbox.html
 echo 'EnableSendfile Off' >> /etc/apache2/apache2.conf
+
+# set some php.ini values
+sed -i.bak s/STRING_TO_REPLACE/STRING_TO_REPLACE_IT_WITH/g /etc/php5/apache2/php.ini
+sed -i.bak s/"upload_max_filesize = 2M"/"upload_max_filesize = 200M"/g /etc/php5/apache2/php.ini
+sed -i.bak s/"max_file_uploads = 20"/"max_file_uploads = 200"/g /etc/php5/apache2/php.ini
+sed -i.bak s/"max_execution_time = 30"/"max_execution_time = 180"/g /etc/php5/apache2/php.ini
+sed -i.bak s/"memory_limit = 128M"/"memory_limit = 512M"/g /etc/php5/apache2/php.ini
+sed -i.bak s/"post_max_size = 8M"/"post_max_size = 200M"/g /etc/php5/apache2/php.ini
 
 # restart apache
 /etc/init.d/apache2 restart
